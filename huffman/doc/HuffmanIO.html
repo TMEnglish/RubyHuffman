@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class HuffmanIO - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>huffman.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-check_decoded">#check_decoded</a>
+    
+    <li ><a href="#method-i-close">#close</a>
+    
+    <li ><a href="#method-i-decoded_matches_symbols">#decoded_matches_symbols</a>
+    
+    <li ><a href="#method-i-report">#report</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./HuffmanBranch.html">HuffmanBranch</a>
+  
+    <li><a href="./HuffmanCodec.html">HuffmanCodec</a>
+  
+    <li><a href="./HuffmanIO.html">HuffmanIO</a>
+  
+    <li><a href="./HuffmanLeaf.html">HuffmanLeaf</a>
+  
+    <li><a href="./HuffmanTree.html">HuffmanTree</a>
+  
+    <li><a href="./Launchy.html">Launchy</a>
+  
+    <li><a href="./OS.html">OS</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PriorityQueue.html">PriorityQueue</a>
+  
+    <li><a href="./PriorityQueue/Entry.html">PriorityQueue::Entry</a>
+  
+    <li><a href="./Source.html">Source</a>
+  
+    <li><a href="./UserError.html">UserError</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class HuffmanIO</h1>
+
+  <div id="description" class="description">
+    
+<p>TO DO: document</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="FLUSH_WAIT">FLUSH_WAIT
+        
+        <dd class="description"><p>Iterate tight loop at most 2**FLUSH_WAIT times waiting on file flush.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-decoded" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">decoded</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>IO to which the decoder writes.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-encoded" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">encoded</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>IO to which the encoder writes and from which the decoder reads.</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-symbols" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">symbols</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>IO from which the encoder reads symbols.</p>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(argument)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Open IO objects :symbols, :encoded, :decoded according to `argument&#39;.</p>
+
+<p>If `argument&#39; matches &#39;–string=&lt;string&gt;&#39; then the IO
+objects are of class StringIO, with :symbols initialized to &lt;string&gt;,
+and with :encoded and :decoded empty.</p>
+
+<p>Otherwise, the IO objects are of class File, with `argument&#39; the path
+of the :symbols File, and with `argument&#39; extended with
+&#39;.encoded&#39; and &#39;.decoded&#39; the paths of :encoded and
+:decoded, respectively.</p>
+
+<p>The :symbols IO object is read-only. The other IO objects are opened to
+write (“w+”), but are also readable.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">argument</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-regexp">/^--string=/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">argument</span>) <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">string</span> = <span class="ruby-identifier">argument</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^--string=/</span>, <span class="ruby-string">&#39;&#39;</span>)
+        <span class="ruby-ivar">@symbols</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">string</span>, <span class="ruby-string">&#39;r&#39;</span>)
+        <span class="ruby-ivar">@decoded</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&#39;</span>, <span class="ruby-string">&#39;w+&#39;</span>)
+        <span class="ruby-ivar">@encoded</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">begin</span>
+            <span class="ruby-ivar">@symbols</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">argument</span>, <span class="ruby-string">&#39;r&#39;</span>)
+            <span class="ruby-ivar">@decoded</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">argument</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;.encoded&#39;</span>, <span class="ruby-string">&#39;w+&#39;</span>)
+            <span class="ruby-ivar">@encoded</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">argument</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;.decoded&#39;</span>, <span class="ruby-string">&#39;w+&#39;</span>)
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+            <span class="ruby-identifier">close</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserError</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@symbols</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserError</span>, <span class="ruby-node">&quot;Empty source of symbols `#{argument}&#39;&quot;</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-check_decoded" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_decoded</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return two Boolean values: Is :decoded is identical to :symbols?</p>
+
+<p>(1) Use a well tested internal method to perform the check.</p>
+
+<p>(2) Execute <a href="OS.html">OS</a> utility to compare source and decoded
+files on disk,  if the <a href="OS.html">OS</a> is recognized as Windows or
+POSIX. There is no reason for this but to play around with Ruby.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_decoded-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_decoded</span>
+    <span class="ruby-identifier">match</span> = <span class="ruby-identifier">decoded_matches_symbols</span>
+    <span class="ruby-identifier">alt_match</span> = <span class="ruby-identifier">match</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@symbols</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">StringIO</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-comment"># Nothing is on disk</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-constant">OS</span>.<span class="ruby-identifier">windows?</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;FC /B #{@symbols.path} #{@decoded.path}&quot;</span>
+        <span class="ruby-identifier">alt_match</span> = <span class="ruby-identifier">system</span>(<span class="ruby-identifier">command</span>)
+        <span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Failed to execute Windows FC&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">alt_match</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-constant">OS</span>.<span class="ruby-identifier">posix?</span> <span class="ruby-keyword">then</span>
+        <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;diff #{@symbols.path} #{@decoded.path} -q&quot;</span>
+        <span class="ruby-identifier">alt_match</span> = <span class="ruby-identifier">system</span>(<span class="ruby-identifier">command</span>)
+        <span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Failed to execute POSIX diff&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">alt_match</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">match</span>, <span class="ruby-identifier">alt_match</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_decoded-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_decoded-method -->
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Close IO objects, ignoring exceptions.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">io</span> <span class="ruby-keyword">in</span> [<span class="ruby-ivar">@symbols</span>, <span class="ruby-ivar">@decoded</span>, <span class="ruby-ivar">@encoded</span>]
+        <span class="ruby-keyword">begin</span>
+            <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-keyword">rescue</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-decoded_matches_symbols" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">decoded_matches_symbols</span><span
+            class="method-args">(wait=0)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Are :symbols and :decoded IO objects identical in contents?</p>
+          
+          
+
+          
+          <div class="method-source-code" id="decoded_matches_symbols-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">decoded_matches_symbols</span>(<span class="ruby-identifier">wait</span>=<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@decoded</span>.<span class="ruby-identifier">flush</span>
+    (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-identifier">wait</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">busy_waiting</span><span class="ruby-operator">|</span> <span class="ruby-identifier">busy_waiting</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span> }
+    <span class="ruby-ivar">@symbols</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-ivar">@decoded</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-identifier">match</span> = <span class="ruby-ivar">@symbols</span>.<span class="ruby-identifier">each_byte</span>.<span class="ruby-identifier">all?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">decoded</span>.<span class="ruby-identifier">getbyte</span> }
+    <span class="ruby-identifier">match</span> <span class="ruby-keyword">or</span> ((<span class="ruby-identifier">wait</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">FLUSH_WAIT</span>) <span class="ruby-keyword">and</span> <span class="ruby-identifier">decoded_matches_symbols</span>(<span class="ruby-identifier">wait</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- decoded_matches_symbols-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- decoded_matches_symbols-method -->
+
+    
+      <div id="method-i-report" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">report</span><span
+            class="method-args">(n_symbols, entropy, cross_entropy)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TO DO: document EXTENSIVELY</p>
+          
+          
+
+          
+          <div class="method-source-code" id="report-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">report</span>(<span class="ruby-identifier">n_symbols</span>, <span class="ruby-identifier">entropy</span>, <span class="ruby-identifier">cross_entropy</span>)
+    <span class="ruby-identifier">match</span>, <span class="ruby-identifier">alt_match</span> = <span class="ruby-identifier">check_decoded</span>
+    <span class="ruby-identifier">bit_rate</span> = <span class="ruby-ivar">@encoded</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@symbols</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">divergence</span> = <span class="ruby-identifier">bit_rate</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">entropy</span>
+    <span class="ruby-identifier">puts</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Source file size               : #{@symbols.size} bytes&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Encoded file size              : #{@encoded.size} bits&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Decoded file size              : #{@decoded.size} bytes&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Source and decoded files match : #{match}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Confirm match (experimental)   : #{alt_match}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Number of distinct symbols     : #{n_symbols}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Entropy H(p)                   : #{entropy.round(5)} bits&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Cross entropy H(p, q)          : #{cross_entropy.round(5)} bits&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Actual bits per encoded symbol : #{bit_rate.round(5)}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Relative entropy D(p||q)       : #{divergence.round(5)} bits&quot;</span>
+    <span class="ruby-identifier">puts</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Here p is the distribution of symbols in the source&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;and q is the ideal distribution of symbols for the code,&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;with H(p, q) = H(p) + D(p||q).&quot;</span>
+    <span class="ruby-identifier">puts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- report-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- report-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class HuffmanCodec - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>huffman_codec.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-cross_entropy">#cross_entropy</a>
+    
+    <li ><a href="#method-i-decode">#decode</a>
+    
+    <li ><a href="#method-i-encode">#encode</a>
+    
+    <li ><a href="#method-i-html">#html</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./HuffmanBranch.html">HuffmanBranch</a>
+  
+    <li><a href="./HuffmanCodec.html">HuffmanCodec</a>
+  
+    <li><a href="./HuffmanIO.html">HuffmanIO</a>
+  
+    <li><a href="./HuffmanLeaf.html">HuffmanLeaf</a>
+  
+    <li><a href="./HuffmanTree.html">HuffmanTree</a>
+  
+    <li><a href="./Launchy.html">Launchy</a>
+  
+    <li><a href="./OS.html">OS</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PriorityQueue.html">PriorityQueue</a>
+  
+    <li><a href="./PriorityQueue/Entry.html">PriorityQueue::Entry</a>
+  
+    <li><a href="./Source.html">Source</a>
+  
+    <li><a href="./UserError.html">UserError</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class HuffmanCodec</h1>
+
+  <div id="description" class="description">
+    
+<p>A <a href="HuffmanCodec.html">HuffmanCodec</a> constructs a binary Huffman
+code on initialization, and supplies methods for</p>
+
+<p>(1) encoding sequences of symbols as sequences of bits,</p>
+
+<p>(2) decoding sequences of bits obtained by encoding,</p>
+
+<p>(3) displaying the code graphically in a browser.</p>
+
+<p>Here a symbol is a byte of data, displayed as a character, and a bit is
+either the character &#39;0&#39; or the character &#39;1&#39;.</p>
+
+<p>The initializer receives a mapping of symbols to positive weights, to which
+there corresponds implicitly a probability mass function p (divide each
+weight by the sum total of the weights). It constructs a mapping c of
+symbols x to strings of bits c(x) called codewords. A Huffman code is
+prefix-free, meaning that for all symbols w and x, the codeword c(w) is not
+a prefix of the codeword c(x). This has an important consequence: any
+sequence of bits formed by concatenation of codewords c(x1), c(x2), …,
+c(xn) decodes uniquely to the sequence of symbols x1, x2, …, xn. The
+encoder indeed processes a given sequence of symbols by concatenating the
+codewords of the symbols.</p>
+
+<p>Suppose that a symbol X is drawn randomly, with probabilities of the
+possible outcomes given by p. Huffman established that the expected length
+of the codeword c(X) is the least possible for any prefix-free code. By
+Shannon&#39;s source coding theorem (see Wikipedia) for symbol codes, the
+expected codeword length is no less than the entropy H(p),  and is less
+than H(p) + 1. The expected codeword length is equal to the entropy if and
+only if all symbols x have probabilities p(x) that are integer powers of 2.</p>
+
+<p>In concrete terms, if you supply the initializer with the frequencies n(x)
+of symbols x in a “source” file of length N, and then supply the source to
+the encoder, the number of bits in the encoded source is at least N * H(p),
+and is less than N * (H(p) + 1). Here p(x) = n(x) / N for all symbols x in
+the source.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(distribution)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Construct codec from a Hash map of symbols to probabilities.</p>
+
+<p>Symbol frequencies may be supplied in place of probabilites.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">distribution</span>)
+    <span class="ruby-identifier">trees</span> = <span class="ruby-constant">PriorityQueue</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">distribution</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">w</span><span class="ruby-operator">|</span> <span class="ruby-identifier">trees</span>[<span class="ruby-identifier">w</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HuffmanLeaf</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">s</span>)}
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">combined</span> = <span class="ruby-constant">HuffmanBranch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>)
+        <span class="ruby-identifier">trees</span>[<span class="ruby-identifier">combined</span>.<span class="ruby-identifier">weight</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">combined</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@tree</span> = <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>
+    <span class="ruby-ivar">@encoder</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">set_encoder</span>(<span class="ruby-ivar">@tree</span>)
+    <span class="ruby-ivar">@dist</span> = <span class="ruby-identifier">distribution</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-cross_entropy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cross_entropy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cross entropy of the source and code distributions.</p>
+
+<p>The “source distribution” p is the probability distribution for which the
+code was designed.</p>
+
+<p>The “code distribution” q is the probability distribution for which the
+code is ideal, i.e.,  q(x) = 2^-|c(x)|, where |c(x)| is the length of the
+codeword for symbol x.</p>
+
+<p>The cross entropy H(p, q) = H(p) + D(p||q), where H(p) is the entropy of p,
+and D(p||q) is the entropy of p relative to q, also known as the
+Kullback-Leibler divergence of q from p. See the Wikipedia article on cross
+entropy.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="cross_entropy-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cross_entropy</span>
+    <span class="ruby-identifier">norm</span> = <span class="ruby-ivar">@tree</span>.<span class="ruby-identifier">weight</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-ivar">@encoder</span>.<span class="ruby-identifier">each_pair</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, (<span class="ruby-identifier">x</span>, <span class="ruby-identifier">w</span>)<span class="ruby-operator">|</span>
+        <span class="ruby-identifier">sum</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@dist</span>[<span class="ruby-identifier">x</span>] <span class="ruby-operator">/</span> <span class="ruby-identifier">norm</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@encoder</span>[<span class="ruby-identifier">x</span>].<span class="ruby-identifier">length</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- cross_entropy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cross_entropy-method -->
+
+    
+      <div id="method-i-decode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">decode</span><span
+            class="method-args">(bits_in, symbols_out)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Print decoding of `bits_in.each_char&#39; to IO stream `symbols_out&#39;.</p>
+
+<p>An ArgumentError occurs if the input contains a character other than
+&#39;0&#39; or &#39;1&#39; or if there are excess bits at the end of the
+input (not decoded to a symbol).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="decode-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">decode</span>(<span class="ruby-identifier">bits_in</span>, <span class="ruby-identifier">symbols_out</span>)
+    <span class="ruby-identifier">bits_in</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-identifier">symbols_out</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-identifier">tree</span> = <span class="ruby-ivar">@tree</span>
+    <span class="ruby-identifier">bits_in</span>.<span class="ruby-identifier">each_char</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">bit</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Non-bit &#39;#{bit}&#39; in `bits in&#39;&quot;</span>                    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
+        <span class="ruby-identifier">tree</span> = <span class="ruby-identifier">tree</span>[<span class="ruby-identifier">bit</span>.<span class="ruby-identifier">to_i</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">leaf?</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">symbols_out</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">tree</span>.<span class="ruby-identifier">symbol</span>.<span class="ruby-identifier">chr</span>)
+            <span class="ruby-identifier">tree</span> = <span class="ruby-ivar">@tree</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;Undecodable bits at end of input&quot;</span>                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tree</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@tree</span> 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- decode-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- decode-method -->
+
+    
+      <div id="method-i-encode" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">encode</span><span
+            class="method-args">(symbols_in, bits_out)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Print encoding of `symbols_in.each_byte&#39; to IO stream `bits_out&#39;.</p>
+
+<p>An ArgumentError occurs if the input contains a symbol for which there is
+no codeword. (There are codewords only for symbols associated with
+probabilities on initialization.)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="encode-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">encode</span>(<span class="ruby-identifier">symbols_in</span>, <span class="ruby-identifier">bits_out</span>)
+    <span class="ruby-identifier">symbols_in</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-identifier">bits_out</span>.<span class="ruby-identifier">rewind</span>
+    <span class="ruby-ivar">@encoder</span>.<span class="ruby-identifier">default_proc</span> = <span class="ruby-identifier">proc</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">unused</span>, <span class="ruby-identifier">symbol</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unencodable symbol &#39;#{symbol}&#39;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">symbols_in</span>.<span class="ruby-identifier">each_byte</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">bits_out</span>.<span class="ruby-identifier">print</span>(<span class="ruby-ivar">@encoder</span>[<span class="ruby-identifier">s</span>.<span class="ruby-identifier">chr</span>])}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- encode-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- encode-method -->
+
+    
+      <div id="method-i-html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">html</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return HTML/JavaScript (as string) for drawing the Huffman tree.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="html-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">html</span>
+    <span class="ruby-ivar">@tree</span>.<span class="ruby-identifier">html</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- html-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- html-method -->
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">(tree=@tree, bits='')</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return String representation of Huffman tree</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File huffman_codec.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">tree</span>=<span class="ruby-ivar">@tree</span>, <span class="ruby-identifier">bits</span>=<span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-identifier">indent</span> = <span class="ruby-string">&#39; &#39;</span> <span class="ruby-operator">*</span> (<span class="ruby-value">4</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">bits</span>.<span class="ruby-identifier">length</span>)
+    <span class="ruby-identifier">node</span> = <span class="ruby-node">&quot;&#39;#{bits}&#39; #{tree.weight}&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">leaf?</span>
+        <span class="ruby-identifier">rest</span> = <span class="ruby-node">&quot; &#39;#{tree.symbol}&#39;\n&quot;</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">rest</span> = <span class="ruby-node">&quot;\n#{to_s(tree[0], bits+&#39;0&#39;)}#{to_s(tree[1], bits+&#39;1&#39;)}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">return</span> [<span class="ruby-identifier">indent</span>, <span class="ruby-identifier">node</span>, <span class="ruby-identifier">rest</span>].<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39;&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_s-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_s-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
