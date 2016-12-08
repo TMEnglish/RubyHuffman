@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Object - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>huffman.rb
+    <li>huffman_tree.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">BasicObject
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-display_in_browser">#display_in_browser</a>
+    
+    <li ><a href="#method-i-run">#run</a>
+    
+    <li ><a href="#method-i-run_as_script">#run_as_script</a>
+    
+    <li ><a href="#method-i-warn">#warn</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./HuffmanBranch.html">HuffmanBranch</a>
+  
+    <li><a href="./HuffmanCodec.html">HuffmanCodec</a>
+  
+    <li><a href="./HuffmanIO.html">HuffmanIO</a>
+  
+    <li><a href="./HuffmanLeaf.html">HuffmanLeaf</a>
+  
+    <li><a href="./HuffmanTree.html">HuffmanTree</a>
+  
+    <li><a href="./Launchy.html">Launchy</a>
+  
+    <li><a href="./OS.html">OS</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PriorityQueue.html">PriorityQueue</a>
+  
+    <li><a href="./PriorityQueue/Entry.html">PriorityQueue::Entry</a>
+  
+    <li><a href="./Source.html">Source</a>
+  
+    <li><a href="./UserError.html">UserError</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Object</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="JAVASCRIPT_DRAWING_DEFINITIONS">JAVASCRIPT_DRAWING_DEFINITIONS
+        
+        <dd class="description"><p>JavaScript functions for drawing the Huffman tree on an HTML canvas.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-display_in_browser" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display_in_browser</span><span
+            class="method-args">(html_source, path=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Write HTML source to a file, and launch browser on that file.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="display_in_browser-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display_in_browser</span>(<span class="ruby-identifier">html_source</span>, <span class="ruby-identifier">path</span>=<span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;#{Dir.pwd}/tmpHuffman.html&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;file:///#{path}&quot;</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Launch browser on URL #{url}&quot;</span>
+    <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">html</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">&#39;w+&#39;</span>)
+    <span class="ruby-keyword">rescue</span>
+        <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Cannot open #{path} to write HTML.&quot;</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">begin</span>
+            <span class="ruby-identifier">html</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">html_source</span>
+            <span class="ruby-keyword">begin</span>
+                <span class="ruby-constant">Launchy</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>)
+            <span class="ruby-keyword">rescue</span>
+                <span class="ruby-identifier">warn</span> <span class="ruby-string">&quot;Launch failed. Try browsing URL manually.&quot;</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">ensure</span>
+            <span class="ruby-identifier">html</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- display_in_browser-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- display_in_browser-method -->
+
+    
+      <div id="method-i-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(argument)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TO DO: document</p>
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">argument</span>)
+    <span class="ruby-identifier">io</span> = <span class="ruby-constant">HuffmanIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">argument</span>)
+    <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">source</span> = <span class="ruby-constant">Source</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">symbols</span>)
+        <span class="ruby-identifier">codec</span> = <span class="ruby-constant">HuffmanCodec</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>.<span class="ruby-identifier">frequencies</span>)
+        <span class="ruby-identifier">codec</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">symbols</span>, <span class="ruby-identifier">io</span>.<span class="ruby-identifier">encoded</span>)
+        <span class="ruby-identifier">codec</span>.<span class="ruby-identifier">decode</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">encoded</span>, <span class="ruby-identifier">io</span>.<span class="ruby-identifier">decoded</span>)
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">report</span>(<span class="ruby-identifier">source</span>.<span class="ruby-identifier">frequencies</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">source</span>.<span class="ruby-identifier">entropy</span>, <span class="ruby-identifier">codec</span>.<span class="ruby-identifier">cross_entropy</span>)
+        <span class="ruby-identifier">display_in_browser</span>(<span class="ruby-identifier">codec</span>.<span class="ruby-identifier">html</span>)
+    <span class="ruby-keyword">ensure</span>
+        <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run-method -->
+
+    
+      <div id="method-i-run_as_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_as_script</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Process the command line, and pass argument to `run&#39;.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="run_as_script-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_as_script</span>
+    <span class="ruby-keyword">begin</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserError</span>, <span class="ruby-node">&quot;USAGE #$0 [--string=&lt;string&gt; | &lt;path&gt;]&quot;</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">run</span> <span class="ruby-constant">ARGV</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">UserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">warn</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+        <span class="ruby-identifier">exit</span> <span class="ruby-value">-1</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run_as_script-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run_as_script-method -->
+
+    
+      <div id="method-i-warn" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warn</span><span
+            class="method-args">(message)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Write script name along with `message&#39; to standard error.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="warn-source">
+            <pre><span class="ruby-comment"># File huffman.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">warn</span>(<span class="ruby-identifier">message</span>)
+    <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#$0: #{message}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- warn-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- warn-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.0.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
