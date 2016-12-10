@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class PriorityQueue::Entry - RDoc Documentation</title>
+<title>class HuffmanTree::Leaf - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>hack_priority_queue.rb
+    <li>huffman_tree.rb
   </ul>
 </nav>
 
@@ -61,7 +61,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="../Object.html">Object</a>
+  <p class="link"><a href="Node.html">HuffmanTree::Node</a>
   
 </nav>
 
@@ -73,11 +73,11 @@
 
   <ul class="link-list">
     
-    <li ><a href="#method-c-new">::new</a>
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-3C-3C">#&lt;&lt;</a>
+    <li ><a href="#method-i-draw">#draw</a>
     
-    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    <li ><a href="#method-i-margin">#margin</a>
     
   </ul>
 </nav>
@@ -124,11 +124,15 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class PriorityQueue::Entry</h1>
+  <h1 class="class">class HuffmanTree::Leaf</h1>
 
   <div id="description" class="description">
     
-<p>An <a href="Entry.html">Entry</a> has a priority and an item</p>
+<p>A <a href="Leaf.html">Leaf</a> is a kind of <a href="Node.html">Node</a>.</p>
+
+<p>A <a href="Leaf.html">Leaf</a> has, in addition to the attributes of a <a
+href="Node.html">Node</a>, a symbol. The width and height are 1, and the
+offset is 0.5.</p>
 
   </div><!-- description -->
 
@@ -148,28 +152,15 @@
       <h3 class="section-header">Attributes</h3>
 
       
-      <div id="attribute-i-item" class="method-detail">
+      <div id="attribute-i-symbol" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">item</span><span
+          <span class="method-name">symbol</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
         <div class="method-description">
         
-        <p>The item stored in an <a href="Entry.html">Entry</a> of the queue</p>
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-priority" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">priority</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>The priority of an <a href="Entry.html">Entry</a> of the queue</p>
+        <p>The String associated with a weight in a leaf node.</p>
         
         </div>
       </div>
@@ -187,7 +178,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(priority)</span>
+            class="method-args">(weight, symbol)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -196,17 +187,23 @@
 
         <div class="method-description">
           
-          <p>The priority must be set first.</p>
+          <p>Assign a Numeric weight and a symbol (String) to a leaf.</p>
+
+<p>The width and height are 1, and the offset is 0.5.</p>
           
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Node.html#method-c-new">HuffmanTree::Node.new</a>
+            </div>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File hack_priority_queue.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">priority</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">priority</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Numeric</span>
-    <span class="ruby-ivar">@priority</span> = <span class="ruby-identifier">priority</span>
-    <span class="ruby-ivar">@item</span> = <span class="ruby-keyword">nil</span>
+            <pre><span class="ruby-comment"># File huffman_tree.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">weight</span>, <span class="ruby-identifier">symbol</span>)
+   <span class="ruby-keyword">super</span>(<span class="ruby-identifier">weight</span>, <span class="ruby-value">1</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0.5</span>)
+   <span class="ruby-ivar">@symbol</span> = <span class="ruby-identifier">symbol</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -224,11 +221,11 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-3C-3C" class="method-detail ">
+      <div id="method-i-draw" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">&lt;&lt;</span><span
-            class="method-args">(item)</span>
+          <span class="method-name">draw</span><span
+            class="method-args">(bits='')</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -237,32 +234,34 @@
 
         <div class="method-description">
           
-          <p>This is the only way to set the item.</p>
+          <p>Generate JavaScript to draw leaf.</p>
+
+<p>Draw a labeled link to the node. Write the symbol at the end of the link.</p>
           
           
 
           
-          <div class="method-source-code" id="3C-3C-source">
-            <pre><span class="ruby-comment"># File hack_priority_queue.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;&lt;</span>(<span class="ruby-identifier">item</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;item already set&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@item</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
-    <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">item</span>
+          <div class="method-source-code" id="draw-source">
+            <pre><span class="ruby-comment"># File huffman_tree.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">draw</span>(<span class="ruby-identifier">bits</span>=<span class="ruby-string">&#39;&#39;</span>)
+    <span class="ruby-node">&quot;#{draw_link(bits)}
+     draw_leaf(#{@offset}, #{symbol.dump.dump});&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- 3C-3C-source -->
+          </div><!-- draw-source -->
           
         </div>
 
         
 
         
-      </div><!-- 3C-3C-method -->
+      </div><!-- draw-method -->
 
     
-      <div id="method-i-3C-3D-3E" class="method-detail ">
+      <div id="method-i-margin" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">&lt;=&gt;</span><span
-            class="method-args">(rhs)</span>
+          <span class="method-name">margin</span><span
+            class="method-args">(deepest, depth=0)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -271,24 +270,24 @@
 
         <div class="method-description">
           
-          <p>Comparison of priority values.</p>
+          <p>Number of characters in &#39;dump&#39; representation of :symbol.</p>
           
           
 
           
-          <div class="method-source-code" id="3C-3D-3E-source">
-            <pre><span class="ruby-comment"># File hack_priority_queue.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">rhs</span>)
-    <span class="ruby-ivar">@priority</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">rhs</span>.<span class="ruby-identifier">priority</span>
+          <div class="method-source-code" id="margin-source">
+            <pre><span class="ruby-comment"># File huffman_tree.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">margin</span>(<span class="ruby-identifier">deepest</span>, <span class="ruby-identifier">depth</span>=<span class="ruby-value">0</span>)
+    <span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">deepest</span> <span class="ruby-operator">?</span>  <span class="ruby-ivar">@symbol</span>.<span class="ruby-identifier">dump</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- 3C-3D-3E-source -->
+          </div><!-- margin-source -->
           
         </div>
 
         
 
         
-      </div><!-- 3C-3D-3E-method -->
+      </div><!-- margin-method -->
 
     
     </section><!-- public-instance-method-details -->

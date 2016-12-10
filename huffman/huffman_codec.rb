@@ -55,9 +55,9 @@ class HuffmanCodec
     #
     def initialize(distribution)
         trees = PriorityQueue.new
-        distribution.each {|s, w| trees[w] << HuffmanLeaf.new(w, s)}
+        distribution.each {|s, w| trees[w] << HuffmanTree::Leaf.new(w, s)}
         while trees.size > 1 do
-            combined = HuffmanBranch.new(trees.shift, trees.shift)
+            combined = HuffmanTree::Branch.new(trees.shift, trees.shift)
             trees[combined.weight] << combined
         end
         @tree = trees.shift
@@ -106,16 +106,16 @@ class HuffmanCodec
         symbols_out.rewind
         tree = @tree
         bits_in.each_char do |bit|
-            raise ArgumentError, "Non-bit '#{bit}' in `bits in'" \
-                  unless bit == '0' or bit == '1'
+            raise ArgumentError,
+                  "Non-bit '#{bit}' in input" unless bit == '0' or bit == '1'
             tree = tree[bit.to_i]
             if tree.leaf? then
                 symbols_out.print(tree.symbol.chr)
                 tree = @tree
             end
         end
-        raise ArgumentError, "Undecodable bits at end of input" \
-              unless tree == @tree 
+        raise ArgumentError,
+              "Undecodable bits at end of input" unless tree == @tree 
     end
 
 

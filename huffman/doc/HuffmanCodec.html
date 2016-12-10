@@ -97,15 +97,17 @@
 
   <ul class="link-list">
   
-    <li><a href="./HuffmanBranch.html">HuffmanBranch</a>
-  
     <li><a href="./HuffmanCodec.html">HuffmanCodec</a>
   
     <li><a href="./HuffmanIO.html">HuffmanIO</a>
   
-    <li><a href="./HuffmanLeaf.html">HuffmanLeaf</a>
-  
     <li><a href="./HuffmanTree.html">HuffmanTree</a>
+  
+    <li><a href="./HuffmanTree/Branch.html">HuffmanTree::Branch</a>
+  
+    <li><a href="./HuffmanTree/Leaf.html">HuffmanTree::Leaf</a>
+  
+    <li><a href="./HuffmanTree/Node.html">HuffmanTree::Node</a>
   
     <li><a href="./Launchy.html">Launchy</a>
   
@@ -213,9 +215,9 @@ the source.</p>
             <pre><span class="ruby-comment"># File huffman_codec.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">distribution</span>)
     <span class="ruby-identifier">trees</span> = <span class="ruby-constant">PriorityQueue</span>.<span class="ruby-identifier">new</span>
-    <span class="ruby-identifier">distribution</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">w</span><span class="ruby-operator">|</span> <span class="ruby-identifier">trees</span>[<span class="ruby-identifier">w</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HuffmanLeaf</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">s</span>)}
+    <span class="ruby-identifier">distribution</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">s</span>, <span class="ruby-identifier">w</span><span class="ruby-operator">|</span> <span class="ruby-identifier">trees</span>[<span class="ruby-identifier">w</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">HuffmanTree</span><span class="ruby-operator">::</span><span class="ruby-constant">Leaf</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">w</span>, <span class="ruby-identifier">s</span>)}
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span> <span class="ruby-keyword">do</span>
-        <span class="ruby-identifier">combined</span> = <span class="ruby-constant">HuffmanBranch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>)
+        <span class="ruby-identifier">combined</span> = <span class="ruby-constant">HuffmanTree</span><span class="ruby-operator">::</span><span class="ruby-constant">Branch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>)
         <span class="ruby-identifier">trees</span>[<span class="ruby-identifier">combined</span>.<span class="ruby-identifier">weight</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">combined</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-ivar">@tree</span> = <span class="ruby-identifier">trees</span>.<span class="ruby-identifier">shift</span>
@@ -316,14 +318,16 @@ input (not decoded to a symbol).</p>
     <span class="ruby-identifier">symbols_out</span>.<span class="ruby-identifier">rewind</span>
     <span class="ruby-identifier">tree</span> = <span class="ruby-ivar">@tree</span>
     <span class="ruby-identifier">bits_in</span>.<span class="ruby-identifier">each_char</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">bit</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Non-bit &#39;#{bit}&#39; in `bits in&#39;&quot;</span>                    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+              <span class="ruby-node">&quot;Non-bit &#39;#{bit}&#39; in input&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;0&#39;</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
         <span class="ruby-identifier">tree</span> = <span class="ruby-identifier">tree</span>[<span class="ruby-identifier">bit</span>.<span class="ruby-identifier">to_i</span>]
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">tree</span>.<span class="ruby-identifier">leaf?</span> <span class="ruby-keyword">then</span>
             <span class="ruby-identifier">symbols_out</span>.<span class="ruby-identifier">print</span>(<span class="ruby-identifier">tree</span>.<span class="ruby-identifier">symbol</span>.<span class="ruby-identifier">chr</span>)
             <span class="ruby-identifier">tree</span> = <span class="ruby-ivar">@tree</span>
         <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;Undecodable bits at end of input&quot;</span>                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tree</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@tree</span> 
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+          <span class="ruby-string">&quot;Undecodable bits at end of input&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tree</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@tree</span> 
 <span class="ruby-keyword">end</span></pre>
           </div><!-- decode-source -->
           
